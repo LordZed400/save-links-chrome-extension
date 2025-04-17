@@ -3,35 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Save Links for Later</title>
-  <link rel="stylesheet" type="text/css" href="./style.css">
+  <title>SLL</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="header-container">
-    <div class="title">Save Links for Later</div>
+    <div class="title">SLL: Save Links for Later</div>
   </div>
   <div class="content-container">
     <div class="input-container">
-      <div class="input-field">
-        <input type="text" name="url-input" id="urlInput">
+      <div class="input-feild-container">
+        <div class="input-field">
+          <label class="input-label" for="linkTitle">Title</label>
+          <input type="text" name="link-title" id="linkTitle">
+        </div>
+        <div class="input-field">
+          <label class="input-label" for="linkUrl">URL</label>
+          <input type="text" name="link-url" id="linkUrl">
+        </div>
+        <div class="input-field">
+          <label class="input-label" for="linkCategory">Category</label>
+        </div>
       </div>
-      <div class="save-button">
-        <button id="saveButton">Save Link</button>
+      <div class="action-container">
+        <div class="select-field">
+          <select name="link-category" id="linkCategory">
+            <option value="1">Category 1</option>
+            <option value="2">Category 2</option>
+          </select>
+        </div>
+        <div class="current-button action-button">
+          <button id="currentButton">Current Tab</button>
+        </div>
+        <div class="save-button action-button">
+          <button id="saveButton">Save</button>
+        </div>
       </div>
     </div>
-    <div class="divider"></div>
     <template id="linkTemplate">
       <div class="single-link">
-        <div class="link"></div>
+        <div class="link-title"></div>
+        <div class="link-url"></div>
         <div class="button-container">
-          <div class="visit-button link-button">
-            <button>Visit</button>
+          <div class="edit-button link-button">
+            <button></button>
           </div>
           <div class="copy-button link-button">
-            <button>Copy</button>
+            <button></button>
           </div>
           <div class="delete-button link-button">
-            <button>Delete</button>
+            <button></button>
           </div>
         </div>
       </div>
@@ -39,6 +60,6 @@
     
     <div id="linksContainer" class="links-container"></div>
   </div>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
