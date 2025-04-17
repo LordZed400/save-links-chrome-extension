@@ -1,0 +1,10 @@
+{
+  "name": "Save links for Later",
+  "description": "Extension to save URLs to catch up to at a later time. Now you can save the address and not worry about extreme memory usage when keeping tabs open to watch later.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.png"
+  }
+}
