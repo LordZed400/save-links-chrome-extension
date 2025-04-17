@@ -4,8 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Save Links for Later</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-  <div class="title">Save Links for Later</div>
+  <div class="header-container">
+    <div class="title">Save Links for Later</div>
+  </div>
+  <div class="content-container">
+    <div class="input-container">
+      <div class="input-field">
+        <input type="text" name="url-input" id="urlInput">
+      </div>
+      <div class="save-button">
+        <button id="saveButton">Save Link</button>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <template id="linkTemplate">
+      <div class="single-link">
+        <div class="link"></div>
+        <div class="button-container">
+          <div class="visit-button link-button">
+            <button>Visit</button>
+          </div>
+          <div class="copy-button link-button">
+            <button>Copy</button>
+          </div>
+          <div class="delete-button link-button">
+            <button>Delete</button>
+          </div>
+        </div>
+      </div>
+    </template>
+    
+    <div id="linksContainer" class="links-container"></div>
+  </div>
+  <script src="./script.js"></script>
 </body>
 </html>

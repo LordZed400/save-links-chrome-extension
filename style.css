@@ -1,0 +1,109 @@
+body {
+  background-color:  #EFE6FB;
+}
+
+.title {
+  border-bottom: 1px solid rgb(121, 121, 121);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.content-container {
+  padding: 10px;
+}
+
+.input-container {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+
+.input-field input {
+  border: 1px solid rgb(121, 121, 121);
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.save-button button {
+  background: #FC5796;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  padding: 5px 15px;
+}
+
+.save-button button:hover {
+  background: #FD191D;
+}
+
+.divider {
+  background-color: rgb(121, 121, 121);
+  height: 1px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.links-container {
+  background-color: #B6E2FD;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  min-width: 600px;
+  padding: 10px;
+  padding: 20px;
+  width: 100%;
+}
+
+.no-links-message {
+  color: #3687BA;
+  font-size: 18px;
+  text-align: center;
+}
+
+.single-link {
+  background-color: #CBE7F8;
+  max-width: 580px;
+  padding: 15px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.link-button button {
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  padding: 5px 10px;
+}
+
+.link-button button:hover {
+  opacity: .8;
+}
+
+.visit-button button {
+  background-color: rgb(150, 147, 255);
+  color: blue;
+}
+
+.copy-button button {
+  background-color: rgb(99, 229, 99);
+  color: green;
+}
+
+.delete-button button {
+  background-color: rgb(247, 141, 141);
+  color: red;
+}
