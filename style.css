@@ -1,6 +1,7 @@
 html,
 body {
   overflow: visible;
+  min-height: 600px;
 }
 
 body {
@@ -31,8 +32,11 @@ body {
   justify-content: flex-start;
   margin-bottom: 20px;
   min-width: 400px;
-  padding: 0.5rem 0.8rem 0.8rem 0.8rem;
   width: 100%;
+}
+
+.input-container {
+  padding: 0.5rem 0.8rem 0.8rem 0.8rem;
 }
 
 .links-list {
@@ -134,6 +138,105 @@ body {
   text-align: center;
 }
 
+.category-container {
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.category-header-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-header {
+  padding: 0.5rem 0.8rem 0 0.8rem;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 0.8rem;
+  flex-grow: 1;
+}
+
+.collapse-toggle img {
+  cursor: pointer;
+  filter: invert(100%);
+  height: 16px;
+  margin-right: 8px;
+  width: 16px;
+}
+
+.links-list.collapsed {
+  display: none;
+}
+
+.links-list {
+  padding: 0 0.8rem 0.8rem 0.8rem;
+}
+
+.category-edit-container img {
+  filter: invert(100%);
+}
+
+.category-edit-container img {
+  width: 15px;
+  height: 15px;
+}
+
+.category-edit {
+  padding: 5px 8px;
+  background: #24262a;
+  border: 1px solid #323438;
+  border-radius: 5px;
+  margin-right: 0.8rem;
+}
+
+.category-edit:hover {
+  background: #333539;
+  cursor: pointer;
+}
+
+.category-text,
+.category-input {
+  box-sizing: border-box;
+  display: none;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 3px 5px;
+  width: 100%;
+}
+
+.category-text.show,
+.category-input.show {
+  display: block;
+}
+
+.category-text {
+  border-bottom: 2px solid transparent;
+}
+
+.category-input {
+  color: white;
+}
+
+.category-input,
+.link-input {
+  background: #393b3f;
+  border: none;
+  border-bottom: 2px solid #56595e;
+  transition: all .2s ease-in-out;
+}
+
+.category-input:active,
+.category-input:focus,
+.link-input:active,
+.link-input:focus {
+  outline: none;
+  border-color: #c0c0c0;
+}
+
 .single-link {
   background: #24262a;
   border: 1px solid #323438;
@@ -144,12 +247,6 @@ body {
   max-width: 580px;
   padding: 10px;
   position: relative;
-}
-
-.links-list:not(.disabled) input {
-  background: #393b3f;
-  border: none;
-  border-bottom: 2px solid #56595e;
 }
 
 .single-link .link-title input,
@@ -233,31 +330,4 @@ body {
 
 .link-button:hover img {
   opacity: 0.8;
-}
-
-.category-container {
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-
-.category-header {
-  align-items: center;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.collapse-toggle img {
-  cursor: pointer;
-  filter: invert(100%);
-  height: 16px;
-  margin-right: 8px;
-  width: 16px;
-}
-
-.links-list.collapsed {
-  display: none;
 }

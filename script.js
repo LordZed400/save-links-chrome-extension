@@ -1,3 +1,5 @@
+var categoryNames = [];
+
 function setLinks() {
   var savedLinksContainer = document.getElementById("linksContainer");
   var categoryTemplate = document.getElementById("categoryTemplate");
@@ -24,19 +26,79 @@ function setLinks() {
       });
 
       const sortedCategories = Object.keys(grouped).sort();
-
+      categoryNames = sortedCategories;
+      var categoryOptions = document.getElementById("linkCategory");
+      categoryOptions.innerHTML = "";
+      const fragmentDiv = document.createDocumentFragment();
+      
       sortedCategories.forEach((category) => {
+        var categoryOption = document.createElement("option");
+        categoryOption.setAttribute("value", category)
+        categoryOption.innerHTML = category;
+
+        fragmentDiv.appendChild(categoryOption);
+
         var categoryItem = categoryTemplate.content.cloneNode(true);
-
+        
         var categoryWrapper = categoryItem.querySelector(".category-container");
-        var categoryTitle = categoryItem.querySelector(".category-title");
-        var collapseHeader = categoryItem.querySelector(".category-header");
+        categoryWrapper.id = category;
+        var categoryHeader = categoryItem.querySelector(".category-header");
+        var categoryEditButton = categoryItem.querySelector(".category-container .category-edit");
+        var categoryTextElement = categoryItem.querySelector(".category-header .category-text");
+        var categoryInputElement = categoryItem.querySelector(".category-header .category-input");
 
-        categoryTitle.textContent = category;
+        categoryTextElement.textContent = category;
+        categoryInputElement.value = category;
 
-        collapseHeader.onclick = () => {
-          linksList.classList.toggle("collapsed");
+        categoryHeader.onclick = () => {
+          const categoryHeaderParent = categoryHeader.closest(".category-container");
+          if (!categoryHeaderParent.classList.contains("disabled")) {
+            linksList.classList.toggle("collapsed");
+          }
         };
+
+        categoryEditButton.onclick = () => {
+          if (categoryEditButton.dataset.state == "showing") {
+            categoryEditButton.dataset.state = "editing";
+            categoryEditButton.querySelector("img").src = "save.svg";
+            categoryTextElement.classList.toggle("show");
+            categoryInputElement.classList.toggle("show");
+            categoryWrapper.classList.toggle("disabled");
+          } else {
+            const container = document.getElementById(category);
+            const newName = container.querySelector(".category-title-input").value;
+            
+            if (category != newName) {
+              if (categoryNames.includes(newName)) {
+                return;
+              }
+
+              const updatedLinks = links.map((savedLink) => {
+                if (savedLink.category == category) {
+                  return {
+                    ...savedLink,
+                    category: newName,
+                  };
+                }
+                return savedLink;
+              });
+
+              chrome.storage.sync
+                .set({ savedLinksForLater: updatedLinks })
+                .then(() => {
+                  setLinks();
+                });
+            }
+            categoryEditButton.dataset.state = "showing";
+            categoryEditButton.querySelector("img").src = "edit.svg";
+            categoryTextElement.classList.toggle("show");
+            categoryInputElement.classList.toggle("show");
+            categoryWrapper.classList.toggle("disabled");
+          }
+        };
+        categoryInputElement.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") categoryEditButton.click();
+        });
 
         const linksList = document.createElement("div");
         linksList.className = "links-list";
@@ -126,6 +188,8 @@ function setLinks() {
         categoryWrapper.appendChild(linksList);
         savedLinksContainer.appendChild(categoryWrapper);
       });
+
+      categoryOptions.appendChild(fragmentDiv);
     }
   });
 }

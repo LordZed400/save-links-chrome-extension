@@ -27,10 +27,7 @@
       </div>
       <div class="action-container">
         <div class="select-field">
-          <select name="link-category" id="linkCategory">
-            <option value="1">Category 1</option>
-            <option value="2">Category 2</option>
-          </select>
+          <select name="link-category" id="linkCategory"></select>
         </div>
         <div class="current-button action-button">
           <button id="currentButton">Current Tab</button>
@@ -42,11 +39,21 @@
     </div>
     <template id="categoryTemplate">
       <div class="category-container">
-        <div class="category-header">
-          <div class="collapse-toggle">
-            <img src="down.svg" alt="collapse">
+        <div class="category-header-container">
+          <div class="category-header">
+            <div class="collapse-toggle">
+              <img src="down.svg" alt="Category Collapse">
+            </div>
+            <div class="category-title">
+              <div class="category-title-text category-text show"></div>
+            </div>
+            <input type="text" class="category-title-input category-input">
           </div>
-          <div class="category-title"></div>
+          <div class="category-edit-container">
+            <div class="category-edit" data-state="showing">
+              <img src="edit.svg" alt="Category Edit">
+            </div>
+          </div>
         </div>
       </div>
     </template>
