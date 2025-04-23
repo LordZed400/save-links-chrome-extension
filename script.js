@@ -64,7 +64,26 @@ function saveLink() {
   });
 }
 
+function getCurrentTabInfo(callback) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    if (tabs.length === 0) return;
+    const tab = tabs[0];
+    const title = tab.title;
+    const url = tab.url;
+
+    callback({ title, url });
+  });
+}
+
 var saveBtn = document.getElementById("saveButton");
 saveBtn.addEventListener("click", saveLink);
+
+var currentBtn = document.getElementById("currentButton");
+currentBtn.addEventListener("click", () => {
+  getCurrentTabInfo(({ title, url }) => {
+    document.getElementById("linkTitle").value = title;
+    document.getElementById("linkUrl").value = url;
+  });
+});
 
 setLinks();

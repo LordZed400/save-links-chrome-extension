@@ -8,6 +8,6 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-    "storage"
+    "storage", "tabs"
   ]
 }
