@@ -52,10 +52,16 @@
     </template>
     <template id="linkTemplate">
       <div class="single-link">
-        <div class="link-title"></div>
-        <div class="link-url"></div>
+        <div class="link-title">
+          <div class="link-title-text link-text show"></div>
+          <input type="text" class="link-title-input link-input">
+        </div>
+        <div class="link-url">
+          <div class="link-url-text link-text show"></div>
+          <input type="text" class="link-url-input link-input">
+        </div>
         <div class="button-container">
-          <div class="edit-button link-button">
+          <div class="edit-button link-button" data-state="showing">
             <img src="edit.svg" alt="Edit Button">
           </div>
           <div class="copy-button link-button">

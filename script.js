@@ -27,31 +27,83 @@ function setLinks() {
 
       sortedCategories.forEach((category) => {
         var categoryItem = categoryTemplate.content.cloneNode(true);
-        
+
         var categoryWrapper = categoryItem.querySelector(".category-container");
         var categoryTitle = categoryItem.querySelector(".category-title");
         var collapseHeader = categoryItem.querySelector(".category-header");
 
         categoryTitle.textContent = category;
-        
+
         collapseHeader.onclick = () => {
           linksList.classList.toggle("collapsed");
         };
-        
+
         const linksList = document.createElement("div");
         linksList.className = "links-list";
+
         grouped[category].forEach((link) => {
           var listItem = linkTemplate.content.cloneNode(true);
+          listItem.querySelector(".single-link").id = link.id;
 
-          var titleElement = listItem.querySelector(".link-title");
-          var linkElement = listItem.querySelector(".link-url");
+          var titleTextElement = listItem.querySelector(".link-title .link-title-text");
+          var linkTextElement = listItem.querySelector(".link-url .link-url-text");
+
+          var titleInputElement = listItem.querySelector(".link-title input");
+          var linkInputElement = listItem.querySelector(".link-url input");
+          
           var editButton = listItem.querySelector(".edit-button");
           var copyButton = listItem.querySelector(".copy-button");
           var deleteButton = listItem.querySelector(".delete-button");
 
-          titleElement.textContent = link.title;
-          linkElement.textContent = link.url;
-          linkElement.onclick = () => window.open(link.url, "_blank");
+          titleTextElement.textContent = link.title;
+          linkTextElement.textContent = link.url;
+          titleInputElement.value = link.title;
+          linkInputElement.value = link.url;
+          
+          linkTextElement.onclick = () => {
+            window.open(link.url, "_blank");
+          };
+
+          editButton.onclick = () => {
+            if (editButton.dataset.state == "showing") {
+              editButton.dataset.state = "editing";
+              editButton.querySelector("img").src = "save.svg";
+            } else {
+              editButton.dataset.state = "showing";
+              editButton.querySelector("img").src = "edit.svg";
+              const container = document.getElementById(link.id);
+              const newTitle = container.querySelector(".link-title input").value;
+              const newUrl = container.querySelector(".link-url input").value;
+              if (link.url != newUrl || link.title != newTitle) {
+                const updatedLink = {
+                  ...link,
+                  title: newTitle,
+                  url: newUrl,
+                };
+                
+                const updatedLinks = links.map((savedLink) =>
+                  savedLink.id === link.id ? updatedLink : savedLink
+                );
+  
+                chrome.storage.sync
+                  .set({ savedLinksForLater: updatedLinks })
+                  .then(() => {
+                    setLinks();
+                  });
+              }
+            }
+            titleTextElement.classList.toggle("show");
+            linkTextElement.classList.toggle("show");
+            titleInputElement.classList.toggle("show");
+            linkInputElement.classList.toggle("show");
+          };
+          titleInputElement.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") editButton.click();
+          });
+          linkInputElement.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") editButton.click();
+          });
+
           copyButton.onclick = () => {
             navigator.clipboard.writeText(link.url).then(() => {
               alert("Link copied to clipboard!");

@@ -146,15 +146,54 @@ body {
   position: relative;
 }
 
-.link-title {
+.links-list:not(.disabled) input {
+  background: #393b3f;
+  border: none;
+  border-bottom: 2px solid #56595e;
+}
+
+.single-link .link-title input,
+.single-link .link-title {
+  color: white;
   font-size: 1rem;
-  line-height: 0.6rem;
-  margin-bottom: 8px;
-  min-height: 0.6rem;
+  line-height: normal;
+  min-height: 1rem;
   min-width: 1px;
 }
 
-.link-url {
+.single-link .link-title {
+  color: white;
+  margin-bottom: 8px;
+}
+
+.single-link .link-url input {
+  font-size: 12px;
+}
+
+.single-link .link-text {
+  letter-spacing: normal;
+  border-bottom: 2px solid transparent;
+}
+
+.single-link .link-input {
+  color: white;
+  width: 100%;
+}
+
+.single-link .link-text,
+.single-link .link-input {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  padding: 3px 5px;
+  display: none;
+}
+
+.single-link .link-text.show,
+.single-link .link-input.show {
+  display: inherit;
+}
+
+.single-link .link-url {
   color: #76abf0;
   cursor: pointer;
   font-size: 0.75rem;
